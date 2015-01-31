@@ -5,3 +5,9 @@
 textarea + .btn {
 	margin-top : 10px;
 }
+
+.border-top{
+	border-top: 1px solid #ccc;
+	margin-top: 10px;
+	padding-top: 10px;
+}

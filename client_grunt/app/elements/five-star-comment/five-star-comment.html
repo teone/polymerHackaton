@@ -35,23 +35,20 @@
       <template repeat="{{c in comments}}">
         <div class="well">
           <div class="row">
-            <div class="col-sm-4">
-              <template class="strong" if="{{c.authorEmail}}">
-                <b>Email:</b>
-              </template>
-            </div>
-            <div class="col-sm-8">
-              <template if="{{c.authorEmail}}">{{c.authorEmail}}</template>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div><b>Testo:</b></div>
-            </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div>{{c.text}}</div>
             </div>
           </div>
+          <template if="{{c.authorEmail}}">
+            <div class="row border-top tex-right">
+              <div class="col-sm-4 col-sm-offset-4">
+                  <b>Author:</b>
+              </div>
+              <div class="col-sm-4">
+                <template if="{{c.authorEmail}}">{{c.authorEmail}}</template>
+              </div>
+            </div>
+          </template>
         </div>
         </template>
     </div>
