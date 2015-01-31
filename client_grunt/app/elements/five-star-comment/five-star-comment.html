@@ -43,19 +43,13 @@
   <script>
     (function () {
       Polymer({
-        ready: function() {
-                console.log('Ciao Sono Polymer!');
-                console.log(this);
-              },
         comment: {authorEmail : 'a@example.it', text : 'Inserisci il tuo testo'},
         sendComment: function(){
-          console.log(this.comment);
           this.shadowRoot.getElementById('sendComment').go();
           this.comments.push(this.comment);
         },
         getElement: function(res){
           this.comments = res.detail.response.comments;
-          console.log(res.detail.response.comments);
         }
       });
     })();

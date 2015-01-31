@@ -92,15 +92,14 @@
           
         },
         handleResponseSuccess: function(response) {
-          console.log(response);
           this.dialogVisible = true;
         },
         handleResponseFail: function(response) {
-          console.log(response);
+          throw new Error(response);
         },
         calculateAvg: function(response, res, var2) {
-          console.log(response);
-          console.log(var2);
+          // console.log(response);
+          // console.log(var2);
         }
     });
 
