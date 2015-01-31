@@ -23,9 +23,8 @@ Awesome stuff, the modular and interoperable way.
       </template>
       <core-ajax 
       id='coreAjaxAvg'
-      auto
       method='GET'
-      url="{{url}}"
+      url="{{urlAvg}}"
       handleAs="json"
       on-core-complete="{{calculateAvg}}"
       on-core-error="{{handleResponseFail}}"
@@ -35,7 +34,7 @@ Awesome stuff, the modular and interoperable way.
     <core-ajax 
       auto
       method='POST'
-      url="{{url}}"
+      url="{{urlVote}}"
       params='{"vote":{{value}}}'
       handleAs="json"
       on-core-complete="{{handleResponseSuccess}}"
