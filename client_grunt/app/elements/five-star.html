@@ -1,51 +1,8 @@
-<!--
-Awesome stuff, the modular and interoperable way.
-
-##### Example
-
-    <five-star></five-star>
-
-@element five-star
-@blurb Awesome stuff, the modular and interoperable way
-@status alpha
-@homepage http://aGithubUserName.github.io/five-star
--->
-
-<polymer-element name="five-star" attributes="notitle refId label">
-  <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
-  <link rel="import" href="../bower_components/paper-elements/paper-elements.html">
+<link rel="import" href="five-star-rating.html"/>
+<link rel="import" href="five-star-comment/five-star-comment.html"/>
+<polymer-element name="five-star" attributes='refId label notitle url'>
   <template>
-    <paper-dialog opened='{{dialogVisible}}' transition='core-transition-top'><p>Votazione effettuata</p></paper-dialog>
-    <link rel="stylesheet" href="/styles/five-star.scss" />
-    <div id="rating">
-      <template repeat="{{r, i in rates}}">
-        <div class="rating-symbol {{i <= index ? filled : empty}}"></div>
-      </template>
-      <core-ajax 
-      id='coreAjaxAvg'
-      method='POST'
-      params='{"refId":"{{refId}}", "label":"{{label}}"}'
-      url="{{urlAvg}}"
-      handleAs="json"
-      on-core-response="{{calculateAvg}}"
-      on-core-error="{{handleResponseFail}}"
-      ></core-ajax>
-      <span class='voteAverage'>{{voteAverage}}</span>
-    </div>
-    <core-ajax 
-      auto
-      method='POST'
-      url="{{urlVote}}"
-      params='{"vote":{{value}} }'
-      handleAs="json"
-      on-core-complete="{{handleResponseSuccess}}"
-      on-core-error="{{handleResponseFail}}"
-      ></core-ajax>
+    <five-star-rating url={{url}} refId={{refId}} label={{label}}></five-star-rating>
+    <five-star-comment url={{url}} label={{label}} refId={{refId}}></five-star-comment>
   </template>
-
-    <!-- build:js scripts/five-star.min.js -->
-    <script src="scripts/five-star.js"/>
-
-    <!-- endbuild -->
-
 </polymer-element>
