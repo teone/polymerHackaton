@@ -4,81 +4,13 @@
   var EMPTY = 'symbol symbol-empty';
   var FILLED = 'symbol symbol-filled';
   var polymer = scope.Polymer('five-star', {
-
-       // Events
-        /**
-        * The `change` event is fired whenever the rating value is changed by the user. It is not fired if the value is changed using the value attribute.
-        *
-        * @event change
-        * @param {Object} detail
-        */
-        // Attributes
-        /**
-        * The `start` attribute sets the starting value.
-        *
-        * @attribute start
-        * @type number
-        * @default 0
-        */
         start: 0,
-        /**
-        * The `stop` attribute sets the stop value. The stop value is not included.
-        *
-        * @attribute stop
-        * @type number
-        * @default 5
-        */
         stop: 5,
-        /**
-        * The `step` attribute specifies the increment or decrement.
-        *
-        * If step is positive, the last element is the largest _start + i \* step_ less than stop.
-        * If step is negative, the last element is the smallest _start + i \* step_ greater than stop.
-        *
-        * @attribute step
-        * @type number
-        * @default 1
-        */
         step: 1,
-        /**
-        * The `readonly` attribute indicates that the user cannot modify the value of the control.
-        *
-        * @attribute readonly
-        * @type bool
-        * @default false
-        */
         readonly: false,
-        /**
-        * The `value` attribute holds the current value in the control.
-        *
-        * @attribute value
-        * @type number
-        * @default undefined
-        */
         value: undefined,
-        /**
-        * The `empty` attribute indicates the classes to be applied to the rating symbols when empty.
-        *
-        * @attribute empty
-        * @type string
-        * @default symbol symbol-empty
-        */
         empty: EMPTY,
-        /**
-        * The `filled` attribute indicates the classes to be applied to the rating symbols when filled.
-        *
-        * @attribute filled
-        * @type string
-        * @default symbol symbol-filled
-        */
         filled: FILLED,
-        /**
-        * The `symbols` attribute specifies the href of the css with the set of symbols (a.k.a. glyphs) for empty and filled states.
-        *
-        * @attribute symbols
-        * @type string
-        * @default undefined
-        */
         symbols: undefined,
         indexToRate: function (index) {
           return this.start + index * this.step;
@@ -87,20 +19,13 @@
           // If rate is not a number then NaN will be returned.
           return Math.max(Math.ceil((rate - this.start) / this.step), 0);
         },
-        // Check the rate is in the proper range [this.start..this.stop) and with
-        // the proper step.
         contains: function (rate) {
           var start = this.step > 0 ? this.start : this.stop;
           var stop = this.step > 0 ? this.stop - 1 : this.start + 1;
           return start <= rate && rate <= stop && (this.start + rate) % this.step === 0;
         },
         created: function () {
-          // For properties that are objects or arrays, you should always
-          // initialize the properties in the created callback. If you set the
-          // default value directly on the prototype (or on the publish object),
-          // you may run into unexpected “shared state” across different instances
-          // of the same element.
-          this.rates = [];
+           this.rates = [];
         },
         domReady: function () {
           var that = this;
@@ -110,9 +35,6 @@
             ratingSymbols[i].addEventListener('click', (function (index) {
               return function () {
                 if (!that.readonly) {
-                  // Update the rate value and fire the change event.
-                  // The index property will be updated accordingly in the
-                  // valueChanged handler.
                   that.value = that.indexToRate(index);
                   that.fire('change');
                 }
@@ -121,7 +43,6 @@
             ratingSymbols[i].addEventListener('mouseenter', (function (index) {
               return function () {
                 if (!that.readonly) {
-                  // Highlight the rating being selected.
                   that.index = index;
                 }
               };
@@ -129,51 +50,35 @@
             ratingSymbols[i].addEventListener('mouseleave', (function (index) {
               return function () {
                 if (!that.readonly) {
-                  // Restore original index according to the current selected value.
                   that.index = that.rateToIndex(that.value);
                 }
               };
             })(i));
           }
-          // Inlcude optional css stylesheet with symbols.
           if (this.symbols) {
             var link = document.createElement('link');
             link.rel = 'stylesheet';
             link.href = this.symbols;
             this.shadowRoot.appendChild(link);
-            // As link elements are not supported in shadow DOM, we have to convert them
-            // to style elements.
             this.element.convertSheetsToStyles(this.shadowRoot);
-            // NOTE: We need to link the stylesheet definition in the header along with the one added
-            // in the polymer-element shadowRoot because otherwise the font files referenced inside
-            // the css are not properly fetched.
-            // Sadly adding this stylesheet into the head of the document also affects the whole document
-            // with the css rules included :(.
             var fakeLink = link.cloneNode();
-            // Trying to disable the global effect of the stylesheet. NOT WORKING.
-            //fakeLink.disabled = true;
             document.getElementsByTagName('head')[0].appendChild(fakeLink);
-            // Trying to remove the global stylesheet after. NOT WORKING.
-            //fakeLink.parentNode.removeChild(fakeLink);
-          }
+           }
         },
         ready: function () {
-          // index will keep the the index of the rating selected or being selected.
           this.index = this.rateToIndex(this.value);
-          // rates array is created to allow template repeat iteration.
           for (var i = 0; i < this.rateToIndex(this.stop); i++) {
             this.rates.push(i);
           }
         },
         valueChanged: function (oldValue, newValue) {
-          // If it is not a correct value, reset to undefined.
           var value = parseInt(newValue, 10);
           if (isNaN(value) || !this.contains(value)) {
             this.value = undefined;
           }
-          // Update the index corresponding the rate. Because index property is data-bound, the
-          // element view will be rendered again with the updated value.
           this.index = this.rateToIndex(this.value);
+          this.readonly = true; 
+          
         }
 
     });
