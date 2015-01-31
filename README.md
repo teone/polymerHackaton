@@ -50,3 +50,13 @@ Ajax Parameters:
 	]
 }
 ```
+
+## Available Endpoint:
+
+- `127.0.0.1:3000/api/fiveStar` [POST] -> Crea un elemento
+- `127.0.0.1:3000/api/fiveStar/:label/:refId` [GET] -> Get di un elemento
+- `127.0.0.1:3000/api/fiveStar/:label/:refId/vote` -> Vota un elemento (campo required `vote`)
+- - `127.0.0.1:3000/api/fiveStar/:label/:refId/comment` -> Commenta un elemento (campo required `text`)
+
+## TODO
+- Nella creazione di un elemento controllare che non sia duplicato

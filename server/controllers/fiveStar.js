@@ -41,6 +41,11 @@ exports.get = function(req, res, next){
 // ========================
 
 exports.vote = function(req, res, next){
+
+	if(!req.body.vote){
+		res.status(401).send('Field Vote is required');
+	}
+
 	FiveStar.findOne(
 		{
 			label : req.params.label,
@@ -52,6 +57,41 @@ exports.vote = function(req, res, next){
 			}
 
 			star.votes.push({vote: parseInt(req.body.vote)});
+
+			star.save(function(err, voted){
+				if (err){
+					return next(err);
+				}
+				res.status(200).send(voted);
+			});
+		}
+	)
+}
+
+// COMMENT an existing Element
+// ===========================
+
+exports.comment = function(req, res, next){
+
+	if(!req.body.text){
+		res.status(401).send('Field Text is required');
+	}
+
+	FiveStar.findOne(
+		{
+			label : req.params.label,
+			refId : req.params.refId
+		},
+		function(err, star){
+			if (err){
+				return next(err);
+			}
+
+			star.comments.push({
+				text: req.body.text,
+				authorEmail: req.body.authorEmail,
+				authorName: req.body.authorName
+			});
 
 			star.save(function(err, voted){
 				if (err){

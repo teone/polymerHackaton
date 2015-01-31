@@ -64,8 +64,8 @@ router.route('/fiveStar/:label/:refId')
 router.route('/fiveStar/:domain/:refId/vote')
     .post(fiveStarCtrl.vote);
 
-// router.route('/fiveStar/:domain/:refId/comment')
-//     .post(fiveStarCtrl.comment);
+router.route('/fiveStar/:domain/:refId/comment')
+    .post(fiveStarCtrl.comment);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
 router.get('/', function(req, res) {
