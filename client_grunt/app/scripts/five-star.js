@@ -74,11 +74,14 @@
            }
         },
         ready: function () {
-          this.urlAvg = this.domain + this.api + this.label + '/' + this.refId;
+          this.urlAvg = this.domain + this.api;
           this.index = this.rateToIndex(this.value);
           for (var i = 0; i < this.rateToIndex(this.stop); i++) {
             this.rates.push(i);
           }
+          this.getAvg();
+        },
+        getAvg : function() {
           this.shadowRoot.getElementById('coreAjaxAvg').go();
         },
         valueChanged: function (oldValue, newValue) {
@@ -94,13 +97,20 @@
         handleResponseSuccess: function(response) {
           console.log(response);
           this.dialogVisible = true;
+          this.getAvg();
         },
         handleResponseFail: function(response) {
           console.log(response);
         },
-        calculateAvg: function(response, res, var2) {
-          console.log(response);
-          console.log(var2);
+        calculateAvg: function(response, res, el, var2) {
+          var votes = response.detail.response.votes;
+          var sum = 0;
+          for (var i in votes) {
+            sum+=votes[i].vote;
+          }
+          var avg = sum/votes.length;
+          console.log(avg);
+          this.voteAverage = avg;
         }
     });
 
