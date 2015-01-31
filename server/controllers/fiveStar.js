@@ -6,17 +6,36 @@ var FiveStar    = mongoose.model('FiveStar');
 // ==================
 
 exports.save = function(req, res, next){
-	var model = new FiveStar();
+	console.log(req.body);
+	FiveStar.findOne(
+		{
+			label : req.body.label,
+			refId : req.body.refId
+		},
+		function(err, star){
+			console.log(star);
+			if (err){
+				return next(err);
+			}
+			if(star){
+				res.status(200).send(star);	
+			}
+			else{
+				var model = new FiveStar();
 
-	model.label = req.body.label;
-	model.refId = req.body.refId;
+				model.label = req.body.label;
+				model.refId = req.body.refId;
 
-	model.save(function(err, star){
-		if(err){
-			return next(err);
+				model.save(function(err, star){
+					if(err){
+						return next(err);
+					}
+					res.status(200).send(star);
+				});
+			}
+			
 		}
-		res.status(200).send(star);
-	});
+	)
 };
 
 // GET an existing Element
