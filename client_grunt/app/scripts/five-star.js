@@ -14,7 +14,8 @@
         symbols: undefined,
         label: undefined,
         refId: undefined,
-        url: undefined,
+        urlVote: undefined,
+        urlAvg: undefined,
         dialogVisible: false,
         voteAverage: '',
         domain: 'http://localhost:3000',
@@ -73,7 +74,7 @@
            }
         },
         ready: function () {
-          this.url = this.domain + this.api + this.label + '/' + this.refId+'/vote';
+          this.urlAvg = this.domain + this.api + this.label + '/' + this.refId;
           this.index = this.rateToIndex(this.value);
           for (var i = 0; i < this.rateToIndex(this.stop); i++) {
             this.rates.push(i);
@@ -81,6 +82,7 @@
           this.shadowRoot.getElementById('coreAjaxAvg').go();
         },
         valueChanged: function (oldValue, newValue) {
+          this.urlVote = this.domain + this.api + this.label + '/' + this.refId+'/vote';
           var value = parseInt(newValue, 10);
           if (isNaN(value) || !this.contains(value)) {
             this.value = undefined;
@@ -96,8 +98,9 @@
         handleResponseFail: function(response) {
           console.log(response);
         },
-        calculateAvg: function(response) {
+        calculateAvg: function(response, res, var2) {
           console.log(response);
+          console.log(var2);
         }
     });
 
