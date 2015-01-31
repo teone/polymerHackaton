@@ -23,10 +23,11 @@ Awesome stuff, the modular and interoperable way.
       </template>
       <core-ajax 
       id='coreAjaxAvg'
-      method='GET'
+      method='POST'
+      params='{"refId":"{{refId}}", "label":"{{label}}"}'
       url="{{urlAvg}}"
       handleAs="json"
-      on-core-complete="{{calculateAvg}}"
+      on-core-response="{{calculateAvg}}"
       on-core-error="{{handleResponseFail}}"
       ></core-ajax>
       <span class='voteAverage'>{{voteAverage}}</span>
@@ -35,7 +36,7 @@ Awesome stuff, the modular and interoperable way.
       auto
       method='POST'
       url="{{urlVote}}"
-      params='{"vote":{{value}}}'
+      params='{"vote":{{value}} }'
       handleAs="json"
       on-core-complete="{{handleResponseSuccess}}"
       on-core-error="{{handleResponseFail}}"
