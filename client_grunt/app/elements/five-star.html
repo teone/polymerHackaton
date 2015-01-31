@@ -10,15 +10,37 @@ Awesome stuff, the modular and interoperable way.
 @status alpha
 @homepage http://aGithubUserName.github.io/five-star
 -->
-<polymer-element name="five-star" attributes="notitle">
 
+<polymer-element name="five-star" attributes="notitle refId label">
+  <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+  <link rel="import" href="../bower_components/paper-elements/paper-elements.html">
   <template>
+    <paper-dialog opened='{{dialogVisible}}' transition='core-transition-top'><p>Votazione effettuata</p></paper-dialog>
     <link rel="stylesheet" href="/styles/five-star.scss" />
     <div id="rating">
       <template repeat="{{r, i in rates}}">
         <div class="rating-symbol {{i <= index ? filled : empty}}"></div>
       </template>
+      <core-ajax 
+      id='coreAjaxAvg'
+      auto
+      method='GET'
+      url="{{url}}"
+      handleAs="json"
+      on-core-complete="{{calculateAvg}}"
+      on-core-error="{{handleResponseFail}}"
+      ></core-ajax>
+      <span class='voteAverage'>{{voteAverage}}</span>
     </div>
+    <core-ajax 
+      auto
+      method='POST'
+      url="{{url}}"
+      params='{"vote":{{value}}}'
+      handleAs="json"
+      on-core-complete="{{handleResponseSuccess}}"
+      on-core-error="{{handleResponseFail}}"
+      ></core-ajax>
   </template>
 
     <!-- build:js scripts/five-star.min.js -->
