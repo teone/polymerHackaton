@@ -3,7 +3,7 @@
 (function(scope){
   var EMPTY = 'symbol symbol-empty';
   var FILLED = 'symbol symbol-filled';
-  var polymer = scope.Polymer('five-star', {
+  var polymer = scope.Polymer('five-star-rating', {
         start: 0,
         stop: 5,
         step: 1,
@@ -110,7 +110,7 @@
           }
           var avg = sum/votes.length;
           console.log(avg);
-          this.voteAverage = avg;
+          this.voteAverage = avg.toPrecision(3);
         }
     });
 

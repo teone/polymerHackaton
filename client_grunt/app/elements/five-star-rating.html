@@ -11,12 +11,12 @@ Awesome stuff, the modular and interoperable way.
 @homepage http://aGithubUserName.github.io/five-star
 -->
 
-<polymer-element name="five-star" attributes="notitle refId label">
+<polymer-element name="five-star-rating" attributes="notitle refId label">
   <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
   <link rel="import" href="../bower_components/paper-elements/paper-elements.html">
   <template>
     <paper-dialog opened='{{dialogVisible}}' transition='core-transition-top'><p>Votazione effettuata</p></paper-dialog>
-    <link rel="stylesheet" href="/styles/five-star.scss" />
+    <link rel="stylesheet" href="/styles/five-star-rating.scss" />
     <div id="rating">
       <template repeat="{{r, i in rates}}">
         <div class="rating-symbol {{i <= index ? filled : empty}}"></div>
@@ -44,7 +44,7 @@ Awesome stuff, the modular and interoperable way.
   </template>
 
     <!-- build:js scripts/five-star.min.js -->
-    <script src="scripts/five-star.js"/>
+    <script src="scripts/five-star-rating.js"/>
 
     <!-- endbuild -->
 
