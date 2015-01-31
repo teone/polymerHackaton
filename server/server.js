@@ -61,8 +61,8 @@ router.route('/fiveStar')
 router.route('/fiveStar/:label/:refId')
     .get(fiveStarCtrl.get);
 
-// router.route('/fiveStar/:domain/:refId/vote')
-//     .post(fiveStarCtrl.vote);
+router.route('/fiveStar/:domain/:refId/vote')
+    .post(fiveStarCtrl.vote);
 
 // router.route('/fiveStar/:domain/:refId/comment')
 //     .post(fiveStarCtrl.comment);
