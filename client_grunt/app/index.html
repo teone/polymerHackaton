@@ -17,19 +17,18 @@
     <!-- endbuild -->
 
     <!-- build:vulcanized elements/elements.vulcanized.html -->
-    <link rel="import" href="elements/five-star-rating.html">
-    <link rel="import" href="elements/five-star-comment/five-star-comment.html">
+    <link rel="import" href="elements/five-star.html">
     <!-- endbuild-->
   </head>
   <body unresolved>
     <div class="hero-unit">
-      <five-star-rating label='prova' refId='42'></five-star-rating>
-      <five-star-comment url="127.0.0.1:3000" label="prova" refId="42"></five-star-comment>
+      <five-star label="prova" refId="42" url="127.0.0.1:3000"></five-star>
     </div>
 
     <!-- build:js scripts/app.js -->
+    <script src="elements/five-star-rating.js"></script>
+    <script src="scripts/five-star.js"></script>
     <script src="scripts/app.js"></script>
-    <script src="scripts/five-star-rating.js"></script>
     <!-- endbuild-->
   </body>
 </html>

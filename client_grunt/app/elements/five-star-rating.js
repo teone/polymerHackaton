@@ -18,7 +18,7 @@
         urlAvg: undefined,
         dialogVisible: false,
         voteAverage: '',
-        domain: 'http://localhost:3000',
+        url: 'http://localhost:3000',
         api: '/api/fiveStar/',
         indexToRate: function (index) {
           return this.start + index * this.step;
@@ -74,7 +74,7 @@
            }
         },
         ready: function () {
-          this.urlAvg = this.domain + this.api;
+          this.urlAvg = this.url + this.api;
           this.index = this.rateToIndex(this.value);
           for (var i = 0; i < this.rateToIndex(this.stop); i++) {
             this.rates.push(i);
@@ -85,7 +85,7 @@
           this.shadowRoot.getElementById('coreAjaxAvg').go();
         },
         valueChanged: function (oldValue, newValue) {
-          this.urlVote = this.domain + this.api + this.label + '/' + this.refId+'/vote';
+          this.urlVote = this.url + this.api + this.label + '/' + this.refId+'/vote';
           var value = parseInt(newValue, 10);
           if (isNaN(value) || !this.contains(value)) {
             this.value = undefined;
