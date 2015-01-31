@@ -2,8 +2,8 @@
 // var lib = require('./components/components');
 (function(scope){
   var EMPTY = 'symbol symbol-empty';
-      var FILLED = 'symbol symbol-filled';
-    var polymer = scope.Polymer('five-star', {
+  var FILLED = 'symbol symbol-filled';
+  var polymer = scope.Polymer('five-star', {
 
        // Events
         /**
