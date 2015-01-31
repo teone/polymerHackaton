@@ -58,8 +58,8 @@ router.use(commonMiddleware);
 router.route('/fiveStar')
     .post(fiveStarCtrl.save)
 
-// router.route('/fiveStar/:domain/:refId')
-//     .get(fiveStarCtrl.get);
+router.route('/fiveStar/:label/:refId')
+    .get(fiveStarCtrl.get);
 
 // router.route('/fiveStar/:domain/:refId/vote')
 //     .post(fiveStarCtrl.vote);

@@ -17,4 +17,22 @@ exports.save = function(req, res, next){
 		}
 		res.status(200).send(star);
 	});
-}
+};
+
+// GET an existing Element
+// =======================
+
+exports.get = function(req, res, next){
+	FiveStar.findOne(
+		{
+			label : req.params.label,
+			refId : req.params.refId
+		},
+		function(err, star){
+			if (err){
+				return next(err);
+			}
+			res.status(200).send(star);
+		}
+	)
+};
