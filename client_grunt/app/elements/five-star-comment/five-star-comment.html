@@ -12,11 +12,13 @@
       on-core-response="{{getElement}}"></core-ajax>
 
     <core-ajax
-      url="http://{{url}}/api/fiveStar/{{label}}/{{refId}}"
+      id='sendComment'
+      url="http://{{url}}/api/fiveStar/{{label}}/{{refId}}/comment"
       handleAs="json"
       method="POST"
       params="{{comment}}"
-      on-core-response="{{getElement}}"></core-ajax>
+      contentType = 'application/x-www-form-urlencoded'
+      on-core-complete="{{sentComment}}"></core-ajax>
 
     <div align="center">
 
@@ -48,6 +50,8 @@
         comment: {email : 'a@example.it', text : 'Inserisci il tuo testo'},
         sendComment: function(){
           console.log(this.comment);
+          this.shadowRoot.getElementById('sendComment').go();
+          this.comments.push(this.comment);
         },
         getElement: function(res){
           this.comments = res.detail.response.comments;

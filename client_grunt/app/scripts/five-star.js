@@ -12,6 +12,13 @@
         empty: EMPTY,
         filled: FILLED,
         symbols: undefined,
+        label: undefined,
+        refId: undefined,
+        url: undefined,
+        dialogVisible: false,
+        voteAverage: '',
+        domain: 'http://localhost:3000',
+        api: '/api/fiveStar/',
         indexToRate: function (index) {
           return this.start + index * this.step;
         },
@@ -66,10 +73,12 @@
            }
         },
         ready: function () {
+          this.url = this.domain + this.api + this.label + '/' + this.refId+'/vote';
           this.index = this.rateToIndex(this.value);
           for (var i = 0; i < this.rateToIndex(this.stop); i++) {
             this.rates.push(i);
           }
+          this.shadowRoot.getElementById('coreAjaxAvg').go();
         },
         valueChanged: function (oldValue, newValue) {
           var value = parseInt(newValue, 10);
@@ -79,8 +88,17 @@
           this.index = this.rateToIndex(this.value);
           this.readonly = true; 
           
+        },
+        handleResponseSuccess: function(response) {
+          console.log(response);
+          this.dialogVisible = true;
+        },
+        handleResponseFail: function(response) {
+          console.log(response);
+        },
+        calculateAvg: function(response) {
+          console.log(response);
         }
-
     });
 
     return polymer;
