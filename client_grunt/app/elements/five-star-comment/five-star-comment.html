@@ -31,7 +31,7 @@
         </template>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label><br>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{comment.email}}"><br>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{comment.authorEmail}}"><br>
 
           <textarea class="form-control" rows="10" with="5000" value="{{comment.text}}" >New</textarea>
           <a type="submit" class="btn btn-default" on-click="{{sendComment}}">Submit</a>
@@ -47,7 +47,7 @@
                 console.log('Ciao Sono Polymer!');
                 console.log(this);
               },
-        comment: {email : 'a@example.it', text : 'Inserisci il tuo testo'},
+        comment: {authorEmail : 'a@example.it', text : 'Inserisci il tuo testo'},
         sendComment: function(){
           console.log(this.comment);
           this.shadowRoot.getElementById('sendComment').go();
