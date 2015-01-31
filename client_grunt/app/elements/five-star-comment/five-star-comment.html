@@ -1,13 +1,25 @@
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-
-<polymer-element name="five-star-comment">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+<polymer-element name="five-star-comment" attributes="url label refId">
   <template>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    
+    <core-ajax
+      auto
+      url="http://127.0.0.1:3000/api/fiveStar/{{label}}/{{refId}}"
+      handleAs="json"
+      on-core-response="{{getElement}}"></core-ajax>
 
     <div align="center">
 
       <form>
+        <template repeat="{{c in comments}}">
+          <template if="{{c.authorEmail}}">Email:</template>
+          <template if="{{c.authorEmail}}">{{c.authorEmail}}</template>
+          <div>Testo:</div>
+          <div>{{c.text}}</div>
+        </template>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label><br>
           <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{comment.email}}"><br>
@@ -24,10 +36,15 @@
       Polymer({
         ready: function() {
                 console.log('Ciao Sono Polymer!');
+                console.log(this);
               },
         comment: {email : 'a@example.it', text : 'Inserisci il tuo testo'},
         sendComment: function(){
           console.log(this.comment);
+        },
+        getElement: function(res){
+          this.comments = res.detail.response.comments;
+          console.log(res.detail.response.comments);
         }
       });
     })();
