@@ -6,14 +6,12 @@ var FiveStar    = mongoose.model('FiveStar');
 // ==================
 
 exports.save = function(req, res, next){
-	console.log(req.body);
 	FiveStar.findOne(
 		{
 			label : req.body.label,
 			refId : req.body.refId
 		},
 		function(err, star){
-			console.log(star);
 			if (err){
 				return next(err);
 			}
