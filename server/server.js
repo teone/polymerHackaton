@@ -61,10 +61,10 @@ router.route('/fiveStar')
 router.route('/fiveStar/:label/:refId')
     .get(fiveStarCtrl.get);
 
-router.route('/fiveStar/:domain/:refId/vote')
+router.route('/fiveStar/:label/:refId/vote')
     .post(fiveStarCtrl.vote);
 
-router.route('/fiveStar/:domain/:refId/comment')
+router.route('/fiveStar/:label/:refId/comment')
     .post(fiveStarCtrl.comment);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
