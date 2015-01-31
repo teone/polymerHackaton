@@ -7,8 +7,15 @@
     
     <core-ajax
       auto
-      url="http://127.0.0.1:3000/api/fiveStar/{{label}}/{{refId}}"
+      url="http://{{url}}/api/fiveStar/{{label}}/{{refId}}"
       handleAs="json"
+      on-core-response="{{getElement}}"></core-ajax>
+
+    <core-ajax
+      url="http://{{url}}/api/fiveStar/{{label}}/{{refId}}"
+      handleAs="json"
+      method="POST"
+      params="{{comment}}"
       on-core-response="{{getElement}}"></core-ajax>
 
     <div align="center">
