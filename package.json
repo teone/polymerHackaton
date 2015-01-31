@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/teone/polymerHackaton.git"
   },
-  "author": "Matteo Scandolo",
+  "author": "Matteo Scandolo, Francesco Nacchia, Francesco Grotta, Giuseppe DeMichele",
   "license": "GPL",
   "dependencies": {
     "body-parser": "~1.0.1",
