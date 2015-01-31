@@ -1,6 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<polymer-element name="five-star-comment" attributes="">
+<polymer-element name="five-star-comment" attributes="text email">
   <template>
     <link rel="stylesheet" href="five-star-comment.css">
 
@@ -10,7 +10,12 @@
   <script>
     (function () {
       Polymer({
-        // define element prototype here
+        ready: function() {
+                console.log('Ciao Sono Polymer!');
+              },
+        sendComment: function(){
+          console.log(this.text);
+        }
       });
     })();
   </script>
