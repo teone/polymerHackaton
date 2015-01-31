@@ -13,17 +13,17 @@ Awesome stuff, the modular and interoperable way.
 <polymer-element name="five-star" attributes="notitle">
 
   <template>
-
-    <!-- build:css styles/five-star.min.css -->
-    <link rel="stylesheet" href="styles/five-star.css" />
-    <!-- endbuild -->
-
-    <content></content>
-
+    <link rel="stylesheet" href="/styles/five-star.scss" />
+    <div id="rating">
+      <template repeat="{{r, i in rates}}"></div>
+        <div class="rating-symbol {{i <= index ? filled : empty}}"></div>
+      </template>
+    </div>
   </template>
 
     <!-- build:js scripts/five-star.min.js -->
-    <script src="scripts/five-star.js"></script>
+    <script src="scripts/five-star.js"/>
+
     <!-- endbuild -->
 
 </polymer-element>
