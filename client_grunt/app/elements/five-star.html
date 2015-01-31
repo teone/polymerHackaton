@@ -15,7 +15,7 @@ Awesome stuff, the modular and interoperable way.
   <template>
     <link rel="stylesheet" href="/styles/five-star.scss" />
     <div id="rating">
-      <template repeat="{{r, i in rates}}"></div>
+      <template repeat="{{r, i in rates}}">
         <div class="rating-symbol {{i <= index ? filled : empty}}"></div>
       </template>
     </div>
