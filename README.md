@@ -27,6 +27,15 @@ Ajax Parameters:
 - Id (Id del box)
 - Url (EndPoint per chiamate AJAX)
 
+# Server
+
+Per far partire il server, entrare nella cartella `server` ed eseguire il comando
+```
+node server.js
+```
+
+Il BackEnd sarà ora raggiungibile all'indirizzo `http://127.0.0.1:3000/api`
+
 ## BE Data Structure:
 
 ```
