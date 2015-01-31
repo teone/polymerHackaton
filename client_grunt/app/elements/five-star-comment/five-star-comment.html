@@ -3,6 +3,7 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 <polymer-element name="five-star-comment" attributes="url label refId">
   <template>
+    <link rel="stylesheet" href="five-star-comment.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     
     <core-ajax
@@ -20,42 +21,49 @@
       contentType = 'application/x-www-form-urlencoded'
       on-core-complete="{{sentComment}}"></core-ajax>
 
-    <div align="center">
-
+    <div>
       <form>
-        <template repeat="{{c in comments}}">
-          <template if="{{c.authorEmail}}">Email:</template>
-          <template if="{{c.authorEmail}}">{{c.authorEmail}}</template>
-          <div>Testo:</div>
-          <div>{{c.text}}</div>
-        </template>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label><br>
           <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{comment.authorEmail}}"><br>
-
+          
+          <label for="exampleInputEmail1">Comment</label><br>
           <textarea class="form-control" rows="10" with="5000" value="{{comment.text}}" >New</textarea>
-          <a type="submit" class="btn btn-default" on-click="{{sendComment}}">Submit</a>
+          <a type="submit" class="btn btn-success" on-click="{{sendComment}}">Submit</a>
         </div>
       </form>
+      <template repeat="{{c in comments}}">
+        <div class="well">
+          <div class="row">
+            <div class="col-sm-12">
+              <div>{{c.text}}</div>
+            </div>
+          </div>
+          <template if="{{c.authorEmail}}">
+            <div class="row border-top tex-right">
+              <div class="col-sm-4 col-sm-offset-4">
+                  <b>Author:</b>
+              </div>
+              <div class="col-sm-4">
+                <template if="{{c.authorEmail}}">{{c.authorEmail}}</template>
+              </div>
+            </div>
+          </template>
+        </div>
+        </template>
     </div>
     
   </template>
   <script>
     (function () {
       Polymer({
-        ready: function() {
-                console.log('Ciao Sono Polymer!');
-                console.log(this);
-              },
-        comment: {authorEmail : 'a@example.it', text : 'Inserisci il tuo testo'},
+        comment: {authorEmail : 'you@example.it', text : 'Insert your comment'},
         sendComment: function(){
-          console.log(this.comment);
           this.shadowRoot.getElementById('sendComment').go();
           this.comments.push(this.comment);
         },
         getElement: function(res){
           this.comments = res.detail.response.comments;
-          console.log(res.detail.response.comments);
         }
       });
     })();
