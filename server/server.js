@@ -37,11 +37,6 @@ mongoose.connection.on('error', function (err) {
     logger.error('Mongoose connection error: ' + err);
 });
 
-// MODELS LOAD
-// =============================================================================
-
-var FiveStar = require('./models/fiveStar');
-
 // CONTROLLERS LOAD
 // =============================================================================
 
@@ -62,13 +57,15 @@ router.use(commonMiddleware);
 // define the route for Ninjas
 router.route('/fiveStar')
     .post(fiveStarCtrl.save)
-    // get all the bears (accessed at GET http://localhost:8080/api/bears)
-    .get(fiveStarCtrl.query);
 
-router.route('/ninja/:_id')
-    .get(fiveStarCtrl.get)
-    .post(fiveStarCtrl.update)
-    .delete(fiveStarCtrl.remove);
+// router.route('/fiveStar/:domain/:refId')
+//     .get(fiveStarCtrl.get);
+
+// router.route('/fiveStar/:domain/:refId/vote')
+//     .post(fiveStarCtrl.vote);
+
+// router.route('/fiveStar/:domain/:refId/comment')
+//     .post(fiveStarCtrl.comment);
 
 // test route to make sure everything is working (accessed at GET http://localhost:3000/api)
 router.get('/', function(req, res) {

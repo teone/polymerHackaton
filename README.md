@@ -26,3 +26,27 @@ Ajax Parameters:
 - Dominio (nome)
 - Id (Id del box)
 - Url (EndPoint per chiamate AJAX)
+
+## BE Data Structure:
+
+```
+{
+	"_id": "",
+	"domain":
+	"refId":
+	"votes:" [
+		{
+			"_id": 
+			"vote":
+		}
+	],
+	"comments": [
+		{
+			"_id":
+			"text":
+			"authorEmail":
+			"authorName":
+		}
+	]
+}
+```
