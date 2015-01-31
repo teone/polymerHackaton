@@ -1,8 +1,12 @@
 <link rel="import" href="five-star-rating.html"/>
 <link rel="import" href="five-star-comment/five-star-comment.html"/>
-<polymer-element name="five-star" attributes='refId label notitle url'>
+<polymer-element name="five-star" attributes='refId label notitle url hideRating hideComment'>
   <template>
-    <five-star-rating url={{url}} refId={{refId}} label={{label}}></five-star-rating>
-    <five-star-comment url={{url}} label={{label}} refId={{refId}}></five-star-comment>
+    <template  if={{!hideRating}}>
+      <five-star-rating url={{url}} refId={{refId}} label={{label}}></five-star-rating>
+    </template>
+    <template if={{!hideComment}}>
+      <five-star-comment  url={{url}} label={{label}} refId={{refId}}></five-star-comment>
+    </template>
   </template>
 </polymer-element>
