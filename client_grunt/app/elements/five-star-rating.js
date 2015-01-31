@@ -1,8 +1,8 @@
 'use strict';
 // var lib = require('./components/components');
 (function(scope){
-  var EMPTY = 'symbol symbol-empty';
-  var FILLED = 'symbol symbol-filled';
+  var EMPTY = 'fa fa-star-o fa-2x';
+  var FILLED = 'fa fa-star fa-2x';
   var polymer = scope.Polymer('five-star-rating', {
         start: 0,
         stop: 5,
@@ -11,7 +11,7 @@
         value: undefined,
         empty: EMPTY,
         filled: FILLED,
-        symbols: undefined,
+        symbols: 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
         label: undefined,
         refId: undefined,
         urlVote: undefined,
